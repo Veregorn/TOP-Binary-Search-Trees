@@ -1,0 +1,35 @@
+{
+  "name": "top-binary-search-trees",
+  "version": "1.0.0",
+  "description": "Creating Balanced Binary Search Trees (BSTs) from ordered arrays (without duplicate values)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Veregorn/TOP-Binary-Search-Trees.git"
+  },
+  "keywords": [],
+  "author": "Veregorn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Veregorn/TOP-Binary-Search-Trees/issues"
+  },
+  "homepage": "https://github.com/Veregorn/TOP-Binary-Search-Trees#readme",
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "eslint": "^8.34.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "html-webpack-plugin": "^5.5.0",
+    "prettier": "2.8.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
