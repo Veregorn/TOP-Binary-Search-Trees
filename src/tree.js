@@ -2,27 +2,35 @@ import { Node } from "./node";
 
 // Factory Tree
 export const Tree = (array) => {
-    // CONSTRUCTOR
-    const buildTree = (arr,start,end) => {
+    // BSTs Builder function
+    const buildTree = (arr, start = 0, end = arr.length - 1) => {
         // Base Case
         if (start > end) {
             return null;
         }
-        // First we need to order the elements in the array (ascending)
-        arr.sort((a, b) => a - b);
-        // Now we need to delete repeated items in the array
-        // Lets build a Set object (Set by definition delete duplicates) and then covert it again to array
-        const arrayOfUniques = [...new Set(arr)];
-        // Now let's find the middle element and return it as a Node element where his childs are defined by recursive calls
+        // Now let's find the middle element and return it as a Node element where his sons are defined by recursive calls
         // to our function
-        const middle = (start + end) / 2;
-        const node = Node(arrayOfUniques[middle],buildTree(arrayOfUniques,start,middle - 1),buildTree(arrayOfUniques,middle + 1,end));
+        const middle = parseInt((start + end) / 2, 10);
+        const node = Node(arr[middle],buildTree(arr,start,middle - 1),buildTree(arr,middle + 1,end));
         // Now return our value
         return node;
     }
 
+    // CONSTRUCTOR
+    const orderCleanAndBuild = (arr) => {
+        // Order the elements in the array (ascending)
+        arr.sort((a, b) => a - b);
+
+        // Delete repeated items in the array
+        // Lets build a Set object (Set by definition delete duplicates) and then covert it again to array
+        const sortedCleanedArr = [...new Set(arr)];
+
+        // Build the tree and return it
+        return buildTree(sortedCleanedArr);
+    }
+
     // ATTRIBUTES
-    let root = buildTree(array,0,array.length - 1);
+    let root = orderCleanAndBuild(array);
 
     // METHODS
 
@@ -33,7 +41,7 @@ export const Tree = (array) => {
         root = node;
     }
     // Prints a received tree in console
-    const prettyPrint = (node, prefix = "", isLeft = true) => {
+    const prettyPrint = (node = root, prefix = "", isLeft = true) => {
         if (node.getRightChild() !== null) {
           prettyPrint(node.getRightChild(), `${prefix}${isLeft ? "│   " : "    "}`, false);
         }
@@ -46,7 +54,6 @@ export const Tree = (array) => {
 
     // Return methods that can be used for "importers"
     return {
-        buildTree,
         getRoot,
         setRoot,
         prettyPrint
