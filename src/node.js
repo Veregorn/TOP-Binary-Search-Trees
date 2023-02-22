@@ -22,6 +22,7 @@ export const Node = (value,left,right) => {
         rChild = node;
     }
 
+    // Return methods that can be used for "importers"
     return {
         getData,
         getLeftChild,
