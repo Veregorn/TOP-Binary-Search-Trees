@@ -1,11 +1,12 @@
 // Factory Node
-export const Node = (value,left,right) => {
-    // Attributes
+export const Node = (value,left = null,right = null) => {
+    // ATTRIBUTES
     let data = value;
     let lChild = left;
     let rChild = right;
 
-    // Methods
+    // METHODS
+
     // Getters
     const getData = () => data;
     const getLeftChild = () => lChild;
@@ -22,6 +23,14 @@ export const Node = (value,left,right) => {
         rChild = node;
     }
 
+    // Other
+    const isLeaf = () => {
+        if (lChild == null && rChild == null) {
+            return true;
+        } 
+            return false;
+    }
+
     // Return methods that can be used for "importers"
     return {
         getData,
@@ -29,7 +38,8 @@ export const Node = (value,left,right) => {
         getRightChild,
         setData,
         setLeftChild,
-        setRightChild
+        setRightChild,
+        isLeaf
     }
 }
 

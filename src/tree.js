@@ -36,10 +36,12 @@ export const Tree = (array) => {
 
     // Getters
     const getRoot = () => root;
+
     // Setters
     const setRoot = (node) => {
         root = node;
     }
+
     // Prints a received tree in console
     const prettyPrint = (node = root, prefix = "", isLeft = true) => {
         if (node.getRightChild() !== null) {
@@ -51,12 +53,54 @@ export const Tree = (array) => {
         }
     }
 
+    // Insert a value in the tree
+    const insertNode = (value, localRoot = root) => {
+        // Base Case
+        if (localRoot == null) {
+            const node = Node(value);
+            return node;
+        }
+
+        // Recursive calls (equal case not contemplated because if the value exist, simply we return that node)
+        if (value < localRoot.getData()) {
+            localRoot.setLeftChild(insertNode(value, localRoot.getLeftChild()));
+        } else if (value > localRoot.getData()) {
+            localRoot.setRightChild(insertNode(value, localRoot.getRightChild()));
+        }
+
+        return localRoot;
+    }
+
+    // Delete a value from the tree
+    const deleteNode = (value, localRoot = root) => {
+        // Base Case
+        if (localRoot == null) {
+            return localRoot;
+        }
+
+        // Recursive calls
+        if (value < localRoot.getData()) {
+            localRoot.setLeftChild(deleteNode(value, localRoot.getLeftChild()));
+        } else if (value > localRoot.getData()) {
+            localRoot.setRightChild(deleteNode(value, localRoot.getRightChild()));
+        } else {
+            // Check the type of node I have
+            if () {
+                
+            } else {
+                
+            }
+        }
+    }
+
 
     // Return methods that can be used for "importers"
     return {
         getRoot,
         setRoot,
-        prettyPrint
+        prettyPrint,
+        insertNode,
+        deleteNode
     }
 }
 

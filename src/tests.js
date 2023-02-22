@@ -7,4 +7,16 @@ const arr1 = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const myTree = Tree(arr1);
 
 // Let's print the tree
-myTree.prettyPrint();
+myTree.prettyPrint(); // OK
+
+// Let's insert a '15' in our tree
+myTree.insertNode(15);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
+
+// Now we can try to insert a value that already exist in the tree
+myTree.insertNode(3);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
