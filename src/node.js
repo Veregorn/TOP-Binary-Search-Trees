@@ -31,6 +31,20 @@ export const Node = (value,left = null,right = null) => {
             return false;
     }
 
+    const hasLeftChild = () => {
+        if (lChild != null) {
+            return true;
+        }
+            return false;
+    }
+
+    const hasRightChild = () => {
+        if (rChild != null) {
+            return true;
+        }
+            return false;
+    }
+
     // Return methods that can be used for "importers"
     return {
         getData,
@@ -39,7 +53,9 @@ export const Node = (value,left = null,right = null) => {
         setData,
         setLeftChild,
         setRightChild,
-        isLeaf
+        isLeaf,
+        hasLeftChild,
+        hasRightChild
     }
 }
 

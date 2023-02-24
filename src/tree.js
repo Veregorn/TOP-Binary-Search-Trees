@@ -71,10 +71,19 @@ export const Tree = (array) => {
         return localRoot;
     }
 
+    // Gets the node with the next greater value in the tree
+    const getInOrderSuccessor = (node) => {
+        let successor = node.getRightChild();
+        while (successor.getLeftChild() != null) {
+            successor = successor.getLeftChild();
+        }
+        return successor;
+    }
+
     // Delete a value from the tree
     const deleteNode = (value, localRoot = root) => {
         // Base Case
-        if (localRoot == null) {
+        if (localRoot.getData() == null) {
             return localRoot;
         }
 
@@ -83,16 +92,44 @@ export const Tree = (array) => {
             localRoot.setLeftChild(deleteNode(value, localRoot.getLeftChild()));
         } else if (value > localRoot.getData()) {
             localRoot.setRightChild(deleteNode(value, localRoot.getRightChild()));
-        } else {
-            // Check the type of node I have
-            if () {
-                
-            } else {
-                
+        } else { // If I have found value, then check the type of node I have
+            if (localRoot.isLeaf()) {
+                return null; // Delete it
+            }
+            if (localRoot.hasLeftChild() && localRoot.hasRightChild()) {
+                const nodeAux = getInOrderSuccessor(localRoot);
+                const data = nodeAux.getData();
+                localRoot.setData(data);
+                localRoot.setRightChild(deleteNode(data, localRoot.getRightChild()));
+            } else if (localRoot.hasLeftChild()) {
+                return localRoot.getLeftChild(); // Assign it to his father
+            } else { // In this case the node has only right child
+                return localRoot.getRightChild();
             }
         }
+        return localRoot;
     }
 
+    // Accepts a value and returns the node with the given value (null if value doesn't exist)
+    const find = (value, localRoot = root) => {
+        // Base Case 1
+        if (localRoot.getData() === null) {
+            return null;
+        }
+        
+        // Base Case 2
+        if (value === localRoot.getData()) {
+            return localRoot;
+        }
+
+        // Recursive calls
+        if (value < localRoot.getData()) {
+            return find(value, localRoot.getLeftChild());
+        }
+        
+        // value > localRoot.getData()
+        return find(value, localRoot.getRightChild());
+    }
 
     // Return methods that can be used for "importers"
     return {
@@ -100,7 +137,8 @@ export const Tree = (array) => {
         setRoot,
         prettyPrint,
         insertNode,
-        deleteNode
+        deleteNode,
+        find
     }
 }
 

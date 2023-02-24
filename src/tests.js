@@ -20,3 +20,28 @@ myTree.insertNode(3);
 
 // Let's print the tree
 myTree.prettyPrint(); // OK
+
+// Delete a leaf node
+myTree.deleteNode(15);
+myTree.deleteNode(7);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
+
+// Delete a node with one child
+myTree.deleteNode(1);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
+
+// Delete a node with one child
+myTree.deleteNode(324);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
+
+// Delete a node with two child
+myTree.deleteNode(8);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
