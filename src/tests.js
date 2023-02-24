@@ -45,3 +45,12 @@ myTree.deleteNode(8);
 
 // Let's print the tree
 myTree.prettyPrint(); // OK
+
+// Let's try a find of a node that doesn't exist
+const myTree2 = Tree([]);
+myTree2.setRoot(myTree.find(55));
+myTree2.prettyPrint(); // OK
+
+// Now find a node that exist
+myTree2.setRoot(myTree.find(23));
+myTree2.prettyPrint(); // OK

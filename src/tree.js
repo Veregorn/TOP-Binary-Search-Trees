@@ -44,6 +44,10 @@ export const Tree = (array) => {
 
     // Prints a received tree in console
     const prettyPrint = (node = root, prefix = "", isLeft = true) => {
+        if (node === null) {
+            console.log("null");
+            return;
+        }
         if (node.getRightChild() !== null) {
           prettyPrint(node.getRightChild(), `${prefix}${isLeft ? "│   " : "    "}`, false);
         }
@@ -113,7 +117,7 @@ export const Tree = (array) => {
     // Accepts a value and returns the node with the given value (null if value doesn't exist)
     const find = (value, localRoot = root) => {
         // Base Case 1
-        if (localRoot.getData() === null) {
+        if (localRoot === null) {
             return null;
         }
         
