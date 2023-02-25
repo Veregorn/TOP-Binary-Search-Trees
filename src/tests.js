@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { sqrt } from "mathjs";
 import { Tree } from "./tree";
 
 // Let's define an array unordered and with duplicates
@@ -54,3 +56,31 @@ myTree2.prettyPrint(); // OK
 // Now find a node that exist
 myTree2.setRoot(myTree.find(23));
 myTree2.prettyPrint(); // OK
+
+// Let's define a function to use with level order
+function squareNode(node) {
+    node.setData(node.getData() * node.getData());
+}
+
+// Let's try 'levelOrder' method
+myTree.levelOrder(squareNode);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
+
+// Now let's call 'levelOrder' without arguments and print the output array
+console.log(myTree.levelOrder().toString());
+
+// Let's define a function to use with preorder
+function radixNode(node) {
+    node.setData(sqrt(node.getData()));
+}
+
+// Let's try 'preorder' method
+myTree.preorder(radixNode);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
+
+// Let's try 'preorder' method without callback function
+console.log(myTree.preorder().toString()); // 

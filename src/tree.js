@@ -135,6 +135,63 @@ export const Tree = (array) => {
         return find(value, localRoot.getRightChild());
     }
 
+    // Traverse the tree with level-order method applying callback function to nodes
+    // or returning an array with nodes in that order if no callback passed as argument
+    const levelOrder = (callback) => {
+        // Define an output array
+        const arr = [];
+        // Test if the tree is empty
+        if (root == null) {
+            return arr;
+        }
+        // If test is passed, define a queue
+        const queue = [root];
+
+        // Start level-order traversal
+        while (queue.length > 0) {
+            const node = queue.shift();
+            if (node.hasLeftChild()) {
+                queue.push(node.getLeftChild());
+            }
+            if (node.hasRightChild()) {
+                queue.push(node.getRightChild());
+            }
+            if (callback) {
+                callback(node);
+            } else {
+                arr.push(node.getData());
+            }
+        }
+
+        return arr;
+    }
+
+    // Traverse the tree with Depth First Search PREORDER method applying callback function to nodes
+    // or returning an array with nodes in that order if no callback passed as argument
+    const preorder = (callback, localRoot = root) => {
+        // Define an output array
+        const arr = [];
+        // Test if the tree is empty
+        if (localRoot == null) {
+            return arr;
+        }
+        // Is there a callback function?
+        if (callback) {
+            callback(localRoot);
+        } else {
+            arr.push(localRoot.getData());
+        }
+        // Are there any childs?
+        if (localRoot.hasLeftChild()) {
+            arr.push(preorder(callback, localRoot.getLeftChild()));
+        }
+        if (localRoot.hasRightChild()) {
+            arr.push(preorder(callback, localRoot.getRightChild()));
+        }
+
+        return arr;
+    }
+
     // Return methods that can be used for "importers"
     return {
         getRoot,
@@ -142,7 +199,9 @@ export const Tree = (array) => {
         prettyPrint,
         insertNode,
         deleteNode,
-        find
+        find,
+        levelOrder,
+        preorder
     }
 }
 
