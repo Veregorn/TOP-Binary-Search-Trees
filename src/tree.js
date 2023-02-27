@@ -171,22 +171,87 @@ export const Tree = (array) => {
     const preorder = (callback, localRoot = root) => {
         // Define an output array
         const arr = [];
+
         // Test if the tree is empty
         if (localRoot == null) {
             return arr;
         }
+
         // Is there a callback function?
         if (callback) {
             callback(localRoot);
         } else {
             arr.push(localRoot.getData());
         }
+
         // Are there any childs?
         if (localRoot.hasLeftChild()) {
             arr.push(preorder(callback, localRoot.getLeftChild()));
         }
         if (localRoot.hasRightChild()) {
             arr.push(preorder(callback, localRoot.getRightChild()));
+        }
+
+        return arr;
+    }
+
+    // Traverse the tree with Depth First Search INORDER method applying callback function to nodes
+    // or returning an array with nodes in that order if no callback passed as argument
+    const inorder = (callback, localRoot = root) => {
+        // Define an output array
+        const arr = [];
+
+        // Test if the tree is empty
+        if (localRoot == null) {
+            return arr;
+        }
+
+        // Is there any left child?
+        if (localRoot.hasLeftChild()) {
+            arr.push(inorder(callback, localRoot.getLeftChild()));
+        }
+
+        // Is there a callback function?
+        if (callback) {
+            callback(localRoot);
+        } else {
+            arr.push(localRoot.getData());
+        }
+        
+        // Is there any right child?
+        if (localRoot.hasRightChild()) {
+            arr.push(inorder(callback, localRoot.getRightChild()));
+        }
+
+        return arr;
+    }
+
+    // Traverse the tree with Depth First Search POSTORDER method applying callback function to nodes
+    // or returning an array with nodes in that order if no callback passed as argument
+    const postorder = (callback, localRoot = root) => {
+        // Define an output array
+        const arr = [];
+
+        // Test if the tree is empty
+        if (localRoot == null) {
+            return arr;
+        }
+
+        // Is there any left child?
+        if (localRoot.hasLeftChild()) {
+            arr.push(postorder(callback, localRoot.getLeftChild()));
+        }
+
+        // Is there any right child?
+        if (localRoot.hasRightChild()) {
+            arr.push(postorder(callback, localRoot.getRightChild()));
+        }
+
+        // Is there a callback function?
+        if (callback) {
+            callback(localRoot);
+        } else {
+            arr.push(localRoot.getData());
         }
 
         return arr;
@@ -201,7 +266,9 @@ export const Tree = (array) => {
         deleteNode,
         find,
         levelOrder,
-        preorder
+        preorder,
+        inorder,
+        postorder
     }
 }
 

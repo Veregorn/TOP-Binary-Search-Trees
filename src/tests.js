@@ -83,4 +83,22 @@ myTree.preorder(radixNode);
 myTree.prettyPrint(); // OK
 
 // Let's try 'preorder' method without callback function
-console.log(myTree.preorder().toString()); // 
+console.log("Array in preorder is: ", myTree.preorder().toString()); // OK
+
+// Let's try 'inorder' method
+myTree.inorder(squareNode);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
+
+// Let's try 'inorder' method without callback function
+console.log("Array in inorder is: ", myTree.inorder().toString()); // OK
+
+// Let's try 'postorder' method
+myTree.postorder(radixNode);
+
+// Let's print the tree
+myTree.prettyPrint(); // OK
+
+// Let's try 'inorder' method without callback function
+console.log("Array in postorder is: ", myTree.postorder().toString()); // OK
