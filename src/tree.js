@@ -227,7 +227,7 @@ export const Tree = (array) => {
     }
 
     // Traverse the tree with Depth First Search POSTORDER method applying callback function to nodes
-    // or returning an array with nodes in that order if no callback passed as argument
+    // or returning an array with nodes in that order if no callback passed as argument.
     const postorder = (callback, localRoot = root) => {
         // Define an output array
         const arr = [];
