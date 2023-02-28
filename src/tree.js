@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { abs } from "mathjs";
 import { Node } from "./node";
 
 // Factory Tree
@@ -285,8 +287,57 @@ export const Tree = (array) => {
 
     // Accepts a node and returns its depth.
     // Depth is defined as the number of edges in path from a given node to the tree’s root node.
-    const depth = (node) => {
+    const depth = (node, localRoot = root) => {
+        const value = node.getData();
+        let d = null;
 
+        // If node doesn't exist in the tree return 'null'
+        if (find(value)) {
+            // Base Case
+            if (value === localRoot.getData()) {
+                d = 0;
+            } else if (value < localRoot.getData()) {
+                d = 1 + depth(node, localRoot.getLeftChild());
+            } else {
+                d = 1 + depth(node, localRoot.getRightChild());
+            }
+        }
+
+        return d;
+    }
+
+    // Checks if the tree is balanced. A balanced tree is one where the difference between heights of 
+    // left subtree and right subtree of every node is not more than 1
+    const isBalanced = (localRoot = root) => {
+        let hl = 0;
+        let hr = 0;
+        
+        // Base Case
+        if (localRoot.isLeaf()) {
+            return true;
+        }
+
+        // Recursive calls
+        if (localRoot.hasLeftChild()) {
+            hl = 1 + height(localRoot.getLeftChild());
+        }
+        if (localRoot.hasRightChild()) {
+            hr = 1 + height(localRoot.getRightChild());
+        }
+
+        if (abs(hl - hr) <= 1) {
+            if (localRoot.hasLeftChild() && localRoot.hasRightChild()) {
+                return (isBalanced(localRoot.getLeftChild()) && isBalanced(localRoot.getRightChild()));
+            }
+            
+            if (localRoot.hasLeftChild()) {
+                return isBalanced(localRoot.getLeftChild());
+            }
+            // Has right child
+            return isBalanced(localRoot.getRightChild());
+        }
+        
+        return false;
     }
 
     // Return methods that can be used for "importers"
@@ -302,7 +353,8 @@ export const Tree = (array) => {
         inorder,
         postorder,
         height,
-        depth
+        depth,
+        isBalanced
     }
 }
 

@@ -115,3 +115,47 @@ console.log("The height of 15 value node is: ", myTree.height(myTree.find(15)));
 // More examples
 console.log("The height of 23 value node is: ", myTree.height(myTree.find(23))); // OK
 console.log("The height of 67 value node is: ", myTree.height(myTree.find(67))); // OK
+
+// Let's test 'depth' method
+console.log("The depth of 9 value node is: ", myTree.depth(myTree.find(9))); // OK
+console.log("The depth of 4 value node is: ", myTree.depth(myTree.find(4))); // OK
+console.log("The depth of 6345 value node is: ", myTree.depth(myTree.find(6345))); // OK
+console.log("The depth of 15 value node is: ", myTree.depth(myTree.find(15))); // OK
+
+console.log("Is this tree balanced? ", myTree.isBalanced()); // OK
+myTree.insertNode(13);
+myTree.prettyPrint();
+console.log("Is this tree balanced? ", myTree.isBalanced()); // OK
+
+const arr2 = [3];
+const myTree3 = Tree(arr2);
+myTree3.insertNode(2);
+myTree3.insertNode(1);
+myTree3.prettyPrint();
+console.log("Is this tree balanced? ", myTree3.isBalanced()); // OK
+
+const arr3 = [20];
+const myTree4 = Tree(arr3);
+myTree4.insertNode(19);
+myTree4.insertNode(8);
+myTree4.insertNode(15);
+myTree4.insertNode(2);
+myTree4.insertNode(13);
+myTree4.insertNode(1);
+myTree4.prettyPrint();
+console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
+myTree4.deleteNode(8);
+myTree4.prettyPrint();
+console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
+myTree4.insertNode(33);
+myTree4.prettyPrint();
+console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
+myTree4.deleteNode(19);
+myTree4.prettyPrint();
+console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
+myTree4.deleteNode(1);
+myTree4.prettyPrint();
+console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
+myTree4.deleteNode(33);
+myTree4.prettyPrint();
+console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
