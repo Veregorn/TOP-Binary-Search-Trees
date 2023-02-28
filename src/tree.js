@@ -257,6 +257,38 @@ export const Tree = (array) => {
         return arr;
     }
 
+    // Accepts a node and returns its height.
+    // Height is defined as the number of edges in longest path from a given node to a leaf node.
+    const height = (node) => {
+        let h = 0;
+        
+        // Base Case
+        if (node.isLeaf()) {
+            h = 0;
+        } else if (node.hasLeftChild() && node.hasRightChild()) {
+            // Recursive Calls
+            const hl = height(node.getLeftChild());
+            const hr = height(node.getRightChild());
+            if (hl >= hr) {
+                h = 1 + hl;
+            } else {
+                h = 1 + hr;
+            }
+        } else if (node.hasLeftChild()) {
+            h = 1 + height(node.getLeftChild());
+        } else { // has right child
+            h = 1 + height(node.getRightChild());
+        }
+
+        return h;
+    }
+
+    // Accepts a node and returns its depth.
+    // Depth is defined as the number of edges in path from a given node to the tree’s root node.
+    const depth = (node) => {
+
+    }
+
     // Return methods that can be used for "importers"
     return {
         getRoot,
@@ -268,7 +300,9 @@ export const Tree = (array) => {
         levelOrder,
         preorder,
         inorder,
-        postorder
+        postorder,
+        height,
+        depth
     }
 }
 

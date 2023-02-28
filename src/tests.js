@@ -103,4 +103,15 @@ myTree.prettyPrint(); // OK
 // Let's try 'inorder' method without callback function
 console.log("Array in postorder is: ", myTree.postorder().toString()); // OK
 
-//
+// Let's print the height of the root node
+console.log("The height of root is: ", myTree.height(myTree.getRoot())); // OK
+myTree.insertNode(15);
+myTree.prettyPrint();
+console.log("The height of root is: ", myTree.height(myTree.getRoot())); // OK
+
+// Let's test 'height' with a leaf node
+console.log("The height of 15 value node is: ", myTree.height(myTree.find(15))); // OK
+
+// More examples
+console.log("The height of 23 value node is: ", myTree.height(myTree.find(23))); // OK
+console.log("The height of 67 value node is: ", myTree.height(myTree.find(67))); // OK
