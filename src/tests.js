@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { sqrt } from "mathjs";
+import { sqrt,random,floor } from "mathjs";
 import { Tree } from "./tree";
 
 // Let's define an array unordered and with duplicates
@@ -172,3 +172,63 @@ console.log("Is this tree balanced? ", myTree3.isBalanced()); // OK
 myTree.rebalance();
 myTree.prettyPrint();
 console.log("Is this tree balanced? ", myTree.isBalanced()); // OK
+
+// TOP testing proposal
+
+// Function that generates a random number between 0 and 'max'
+function getRandomInt(max) {
+    return floor(random() * max);
+}
+
+// Returns an array of 'n' random numbers each time you call it
+function generateRandomArray(n) {
+    const arr = [];
+
+    for (let i = 0; i < n - 1; i+=1) {
+        arr.push(getRandomInt(101));
+    }
+
+    return arr;
+}
+
+// Create a binary search tree from an array of random numbers
+const oneTree = Tree(generateRandomArray(10));
+
+// Print it
+oneTree.prettyPrint();
+
+// Confirm that the tree is balanced
+console.log("Is oneTree balanced? ", oneTree.isBalanced()); // OK
+
+// Print out all elements in level, pre, post, and in order
+console.log("oneTree nodes in LEVEL order: ", oneTree.levelOrder().toString()); 
+console.log("oneTree nodes in PRE order: ", oneTree.preorder().toString());
+console.log("oneTree nodes in POST order: ", oneTree.postorder().toString());
+console.log("oneTree nodes in IN order: ", oneTree.inorder().toString());
+
+// Unbalance the tree by adding several numbers > 100
+oneTree.insertNode(127);
+oneTree.insertNode(159);
+oneTree.insertNode(111);
+oneTree.insertNode(172);
+
+// Print it
+oneTree.prettyPrint();
+
+// Confirm that the tree is unbalanced
+console.log("Is oneTree balanced? ", oneTree.isBalanced()); // OK
+
+// Balance the tree
+oneTree.rebalance();
+
+// Print it
+oneTree.prettyPrint();
+
+// Confirm that the tree is balanced
+console.log("Is oneTree balanced? ", oneTree.isBalanced()); // OK
+
+// Print out all elements in level, pre, post, and in order
+console.log("oneTree nodes in LEVEL order: ", oneTree.levelOrder().toString()); 
+console.log("oneTree nodes in PRE order: ", oneTree.preorder().toString());
+console.log("oneTree nodes in POST order: ", oneTree.postorder().toString());
+console.log("oneTree nodes in IN order: ", oneTree.inorder().toString());
