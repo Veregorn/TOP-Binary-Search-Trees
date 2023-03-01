@@ -172,7 +172,7 @@ export const Tree = (array) => {
     // or returning an array with nodes in that order if no callback passed as argument
     const preorder = (callback, localRoot = root) => {
         // Define an output array
-        const arr = [];
+        let arr = [];
 
         // Test if the tree is empty
         if (localRoot == null) {
@@ -183,15 +183,15 @@ export const Tree = (array) => {
         if (callback) {
             callback(localRoot);
         } else {
-            arr.push(localRoot.getData());
+            arr = arr.concat(localRoot.getData());
         }
 
         // Are there any childs?
         if (localRoot.hasLeftChild()) {
-            arr.push(preorder(callback, localRoot.getLeftChild()));
+            arr = arr.concat(preorder(callback, localRoot.getLeftChild()));
         }
         if (localRoot.hasRightChild()) {
-            arr.push(preorder(callback, localRoot.getRightChild()));
+            arr = arr.concat(preorder(callback, localRoot.getRightChild()));
         }
 
         return arr;
@@ -232,7 +232,7 @@ export const Tree = (array) => {
     // or returning an array with nodes in that order if no callback passed as argument.
     const postorder = (callback, localRoot = root) => {
         // Define an output array
-        const arr = [];
+        let arr = [];
 
         // Test if the tree is empty
         if (localRoot == null) {
@@ -241,19 +241,19 @@ export const Tree = (array) => {
 
         // Is there any left child?
         if (localRoot.hasLeftChild()) {
-            arr.push(postorder(callback, localRoot.getLeftChild()));
+            arr = arr.concat(postorder(callback, localRoot.getLeftChild()));
         }
 
         // Is there any right child?
         if (localRoot.hasRightChild()) {
-            arr.push(postorder(callback, localRoot.getRightChild()));
+            arr = arr.concat(postorder(callback, localRoot.getRightChild()));
         }
 
         // Is there a callback function?
         if (callback) {
             callback(localRoot);
         } else {
-            arr.push(localRoot.getData());
+            arr = arr.concat(localRoot.getData());
         }
 
         return arr;
