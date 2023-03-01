@@ -3,6 +3,8 @@
         "childs",
         "INORDER",
         "POSTORDER",
-        "preorder"
+        "preorder",
+        "rebalance",
+        "Rebalances"
     ]
 }

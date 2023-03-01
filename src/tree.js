@@ -201,7 +201,7 @@ export const Tree = (array) => {
     // or returning an array with nodes in that order if no callback passed as argument
     const inorder = (callback, localRoot = root) => {
         // Define an output array
-        const arr = [];
+        let arr = [];
 
         // Test if the tree is empty
         if (localRoot == null) {
@@ -210,19 +210,19 @@ export const Tree = (array) => {
 
         // Is there any left child?
         if (localRoot.hasLeftChild()) {
-            arr.push(inorder(callback, localRoot.getLeftChild()));
+            arr = arr.concat(inorder(callback, localRoot.getLeftChild()));
         }
 
         // Is there a callback function?
         if (callback) {
             callback(localRoot);
         } else {
-            arr.push(localRoot.getData());
+            arr = arr.concat(localRoot.getData());
         }
         
         // Is there any right child?
         if (localRoot.hasRightChild()) {
-            arr.push(inorder(callback, localRoot.getRightChild()));
+            arr = arr.concat(inorder(callback, localRoot.getRightChild()));
         }
 
         return arr;
@@ -340,6 +340,11 @@ export const Tree = (array) => {
         return false;
     }
 
+    // Rebalances an unbalanced tree
+    const rebalance = () => {
+        setRoot(buildTree(inorder()));
+    }
+
     // Return methods that can be used for "importers"
     return {
         getRoot,
@@ -354,7 +359,8 @@ export const Tree = (array) => {
         postorder,
         height,
         depth,
-        isBalanced
+        isBalanced,
+        rebalance
     }
 }
 

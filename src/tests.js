@@ -159,3 +159,16 @@ console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
 myTree4.deleteNode(33);
 myTree4.prettyPrint();
 console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
+
+// Let's try 'rebalance' method
+myTree4.rebalance();
+myTree4.prettyPrint();
+console.log("Is this tree balanced? ", myTree4.isBalanced()); // OK
+
+myTree3.rebalance();
+myTree3.prettyPrint();
+console.log("Is this tree balanced? ", myTree3.isBalanced()); // OK
+
+myTree.rebalance();
+myTree.prettyPrint();
+console.log("Is this tree balanced? ", myTree.isBalanced()); // OK
